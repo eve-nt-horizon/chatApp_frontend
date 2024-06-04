@@ -18,6 +18,9 @@ export const setupCanvas = () => {
   canvas.addEventListener("mouseout", onMouseUp, false);
   canvas.addEventListener("mousemove", throttle(onMouseMove, 10), false);
 
+  window.addEventListener('resize',onResize,false);
+  onResize();
+
   //socket.on("drawing", onDrawingEvent);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -114,5 +117,9 @@ console.log(current.x,current.y);
         emit:false,
     }
     drawLine(drawParams)
+  }
+  function onResize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
   }
 };
